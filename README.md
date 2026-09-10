@@ -27,7 +27,16 @@
 
 ---
 
-# TradingAgents: Multi-Agents LLM Financial Trading Framework
+# Forex TradingAgents: Multi-Agents LLM FX Research Framework
+
+This fork adds a first-class `forex` asset mode for spot currency pairs such
+as `EURUSD`, `GBPJPY`, and `USDCHF`. Pairs are normalized to Yahoo Finance's
+`=X` symbols, equity fundamentals are removed from forex analyst selection,
+and market/news agents receive FX-specific guidance focused on central-bank
+policy differentials, macro data, yields, risk sentiment, and event risk.
+
+This remains a research and decision-support framework. It does not place live
+orders and is not financial advice.
 
 ## News
 - [2026-08] **TradingAgents v0.4.0** released with look-ahead / point-in-time fixes across FRED macro, social sentiment, and the decision-log memory; clearer decision signals; working CLI checkpoint resume; Trader price grounding; and the GPT-5.6 and GLM-5.3 models. See [CHANGELOG.md](CHANGELOG.md) for the full list.

@@ -41,7 +41,17 @@ _FOREX_CURRENCIES = frozenset(
     }
 )
 
-# Crypto bases that brokers quote against USD without a separator.
+
+
+def is_forex_symbol(raw: str) -> bool:
+    """Return whether a raw or canonical symbol is a recognized spot FX pair."""
+    if not isinstance(raw, str):
+        return False
+    s = raw.strip().upper().rstrip("+")
+    if s.endswith("=X"):
+        s = s[:-2]
+    return len(s) == 6 and s[:3] in _FOREX_CURRENCIES and s[3:] in _FOREX_CURRENCIES
+
 _CRYPTO_BASES = frozenset(
     {"BTC", "ETH", "SOL", "XRP", "ADA", "DOGE", "LTC", "BCH", "DOT", "AVAX", "LINK"}
 )

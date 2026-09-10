@@ -8,11 +8,14 @@ from tradingagents.agents.utils.agent_utils import (
     get_verified_market_snapshot,
 )
 
+from tradingagents.agents.utils.forex_context import forex_context
+
 
 def create_market_analyst(llm):
 
     def market_analyst_node(state):
         current_date = state["trade_date"]
+        asset_type = state.get("asset_type", "stock")
         instrument_context = get_instrument_context_from_state(state)
 
         tools = [
@@ -22,7 +25,8 @@ def create_market_analyst(llm):
         ]
 
         system_message = (
-            """You are a trading assistant tasked with analyzing financial markets. Your role is to select the **most relevant indicators** for a given market condition or trading strategy from the following list. The goal is to choose up to **8 indicators** that provide complementary insights without redundancy. Categories and each category's indicators are:
+            forex_context(asset_type)
+            + """You are a trading assistant tasked with analyzing financial markets. Your role is to select the **most relevant indicators** for a given market condition or trading strategy from the following list. The goal is to choose up to **8 indicators** that provide complementary insights without redundancy. Categories and each category's indicators are:
 
 Moving Averages:
 - close_50_sma: 50 SMA: A medium-term trend indicator. Usage: Identify trend direction and serve as dynamic support/resistance. Tips: It lags price; combine with faster indicators for timely signals.

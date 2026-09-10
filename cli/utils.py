@@ -7,11 +7,12 @@ from rich.console import Console
 
 from cli.models import AnalystType, AssetType
 from tradingagents.llm_clients.api_key_env import get_api_key_env
+from tradingagents.dataflows.symbol_utils import is_forex_symbol
 from tradingagents.llm_clients.model_catalog import get_model_options
 
 console = Console()
 
-TICKER_INPUT_EXAMPLES = "SPY, 0700.HK, BTC-USD"
+TICKER_INPUT_EXAMPLES = "EURUSD, GBPJPY, USDCHF, BTC-USD"
 
 ANALYST_ORDER = [
     ("Market Analyst", AnalystType.MARKET),
@@ -45,7 +46,7 @@ def get_ticker() -> str:
         f"Enter ticker symbol (e.g. {TICKER_INPUT_EXAMPLES}):",
         validate=lambda x: (
             is_valid_ticker_input(x)
-            or "Please enter a valid ticker symbol, e.g. AAPL, 000404.SZ, 0700.HK, GC=F."
+            or "Please enter a valid symbol, e.g. EURUSD, GBPJPY, AAPL, BTC-USD, or GC=F."
         ),
         style=questionary.Style(
             [
@@ -84,13 +85,15 @@ def detect_asset_type(ticker: str) -> AssetType:
     canonical = normalize_ticker_symbol(ticker)
     if canonical.endswith(CRYPTO_SUFFIXES):
         return AssetType.CRYPTO
+    if is_forex_symbol(canonical):
+        return AssetType.FOREX
     return AssetType.STOCK
 
 
 def filter_analysts_for_asset_type(
     analysts: list[AnalystType], asset_type: AssetType
 ) -> list[AnalystType]:
-    if asset_type != AssetType.CRYPTO:
+    if asset_type not in (AssetType.CRYPTO, AssetType.FOREX):
         return analysts
     return [
         analyst

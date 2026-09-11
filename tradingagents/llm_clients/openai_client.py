@@ -230,6 +230,7 @@ OPENAI_COMPATIBLE_PROVIDERS: dict[str, ProviderSpec] = {
     "openai_compatible": ProviderSpec(
         require_base_url=True, key_optional=True, chat_class=LocalCompatibleChatOpenAI
     ),
+    "atessa":     ProviderSpec(base_url="https://atessa.top/v1"),
 }
 
 

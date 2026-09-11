@@ -22,6 +22,7 @@ from tradingagents.default_config import DEFAULT_CONFIG
 
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
+load_dotenv(Path.home() / ".hermes" / ".env", override=False)
 app = Flask(
     __name__,
     template_folder=str(BASE_DIR / "local_ui" / "templates"),
@@ -146,6 +147,9 @@ def _run_job(job_id: str, payload: dict[str, Any]) -> None:
         from tradingagents.graph.trading_graph import TradingAgentsGraph
 
         config = DEFAULT_CONFIG.copy()
+        config["llm_provider"] = "atessa"
+        config["deep_think_llm"] = "gpt-6-astra"
+        config["quick_think_llm"] = "gpt-6-astra"
         config["output_language"] = "French"
         graph = TradingAgentsGraph(
             selected_analysts=tuple(payload["analysts"]), debug=False, config=config

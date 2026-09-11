@@ -200,6 +200,10 @@ Completed analyses are saved locally in a SQLite database at
 report or delete one/all saved analyses. Set `FOREX_AGENT_HISTORY_DB` if you
 want to store the database somewhere else.
 
+The local UI uses the Hermes Atessa OpenAI-compatible gateway by default with
+`gpt-6-astra`. It reads `HERMES_CUSTOM_ATESSA_API_KEY` from the Hermes secret
+environment; the key should not be committed to this repository.
+
 ### Markets and tickers
 
 TradingAgents works with any market Yahoo Finance covers, using the exchange-suffixed ticker. Company identity and the alpha benchmark resolve automatically per market.

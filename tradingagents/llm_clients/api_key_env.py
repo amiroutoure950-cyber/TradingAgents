@@ -41,6 +41,8 @@ PROVIDER_API_KEY_ENV: dict[str, str | None] = {
     # relays), but it is marked key-optional in the provider registry so the CLI
     # never forces a prompt and keyless local servers still work.
     "openai_compatible": "OPENAI_COMPATIBLE_API_KEY",
+    # Hermes-local Atessa gateway used by the local Forex interface.
+    "atessa":     "HERMES_CUSTOM_ATESSA_API_KEY",
 }
 
 

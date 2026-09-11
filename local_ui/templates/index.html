@@ -16,6 +16,11 @@
       <div class="local-badge"><i></i> Exécution locale</div>
     </header>
 
+    <nav class="main-nav" aria-label="Navigation principale">
+      <button class="nav-button active" data-view="new-analysis">Nouvelle analyse</button>
+      <button class="nav-button" data-view="history">Historique <span id="history-count">0</span></button>
+    </nav>
+
     <section class="workspace">
       <aside class="control-panel panel">
         <div class="panel-heading">
@@ -78,6 +83,14 @@
           <article id="report-content" class="report-content"></article>
         </div>
       </section>
+    </section>
+
+    <section id="history-view" class="history-view panel hidden">
+      <div class="history-heading">
+        <div><p class="eyebrow">ARCHIVE LOCALE</p><h2>Historique des analyses</h2><p>Retrouvez vos décisions et rapports enregistrés sur cette machine.</p></div>
+        <button id="clear-history" class="clear-history" type="button">Effacer l’historique</button>
+      </div>
+      <div id="history-list" class="history-list"></div>
     </section>
   </main>
   <script src="/static/app.js"></script>

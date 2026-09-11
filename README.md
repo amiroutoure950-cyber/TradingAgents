@@ -195,6 +195,11 @@ launches the multi-agent analysis in the background, and displays the final
 decision plus the individual research reports. Stop it with `Ctrl+C` in the
 server process.
 
+Completed analyses are saved locally in a SQLite database at
+`~/.tradingagents/history.sqlite3`. Use the **Historique** tab to reopen a
+report or delete one/all saved analyses. Set `FOREX_AGENT_HISTORY_DB` if you
+want to store the database somewhere else.
+
 ### Markets and tickers
 
 TradingAgents works with any market Yahoo Finance covers, using the exchange-suffixed ticker. Company identity and the alpha benchmark resolve automatically per market.

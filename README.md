@@ -179,6 +179,22 @@ python -m cli.main     # alternative: run directly from source
 ```
 You will see a screen where you can select your desired tickers, analysis date, LLM provider, research depth, and more.
 
+### Local web interface
+
+To use the Forex agent without the terminal UI, install the project and start
+the local browser interface:
+
+```bash
+cp .env.example .env
+# Add your LLM API key to .env, then:
+forex-agent-ui
+```
+
+Open `http://127.0.0.1:8765`. The interface runs locally, accepts Forex pairs,
+launches the multi-agent analysis in the background, and displays the final
+decision plus the individual research reports. Stop it with `Ctrl+C` in the
+server process.
+
 ### Markets and tickers
 
 TradingAgents works with any market Yahoo Finance covers, using the exchange-suffixed ticker. Company identity and the alpha benchmark resolve automatically per market.

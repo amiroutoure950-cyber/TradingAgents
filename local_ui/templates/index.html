@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forex Intelligence Desk</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">LOCAL AI RESEARCH TERMINAL</p>
+        <h1>Forex Intelligence <span>Desk</span></h1>
+      </div>
+      <div class="local-badge"><i></i> Exécution locale</div>
+    </header>
+
+    <section class="workspace">
+      <aside class="control-panel panel">
+        <div class="panel-heading">
+          <span>01</span>
+          <div><p>Nouvelle analyse</p><small>Configurez votre mission</small></div>
+        </div>
+
+        <form id="analysis-form">
+          <label>Paire Forex</label>
+          <div class="symbol-field">
+            <input id="symbol" name="symbol" value="EURUSD" maxlength="12" autocomplete="off" required>
+            <span id="pair-label">EUR / USD</span>
+          </div>
+          <div class="quick-pairs">
+            <button type="button" data-pair="EURUSD">EURUSD</button>
+            <button type="button" data-pair="GBPUSD">GBPUSD</button>
+            <button type="button" data-pair="USDJPY">USDJPY</button>
+            <button type="button" data-pair="GBPJPY">GBPJPY</button>
+          </div>
+
+          <label for="date">Date d’analyse</label>
+          <input id="date" name="date" type="date" required>
+
+          <label>Équipe d’analystes</label>
+          <div class="analysts">
+            <label class="analyst active"><input type="checkbox" value="market" checked><b>Marché</b><small>Technique & prix</small></label>
+            <label class="analyst active"><input type="checkbox" value="news" checked><b>Macro</b><small>Banques centrales & news</small></label>
+            <label class="analyst"><input type="checkbox" value="social"><b>Sentiment</b><small>Flux et psychologie</small></label>
+          </div>
+
+          <button class="launch" type="submit"><span>Lancer l’analyse</span><b>→</b></button>
+          <p class="privacy">Les clés API restent dans votre fichier <code>.env</code> local.</p>
+        </form>
+      </aside>
+
+      <section class="results panel">
+        <div id="empty-state" class="empty-state">
+          <div class="orb"><div></div><div></div><div></div></div>
+          <p class="eyebrow">PRÊT POUR L’ANALYSE</p>
+          <h2>Transformez les données en<br><span>décision structurée.</span></h2>
+          <p>Choisissez une paire, une date et lancez l’équipe multi-agents.</p>
+          <div class="pipeline"><span>Marché</span><i>→</i><span>Macro</span><i>→</i><span>Débat</span><i>→</i><span>Risque</span></div>
+        </div>
+
+        <div id="progress-state" class="progress-state hidden">
+          <p class="eyebrow">MISSION EN COURS</p>
+          <h2 id="progress-title">Analyse de EURUSD</h2>
+          <div class="progress-line"><i></i></div>
+          <p id="progress-message">Initialisation des analystes…</p>
+          <small>Une analyse complète peut prendre plusieurs minutes.</small>
+        </div>
+
+        <div id="report-state" class="report-state hidden">
+          <div class="decision-head">
+            <div><p class="eyebrow">DÉCISION FINALE</p><h2 id="report-symbol"></h2></div>
+            <div id="decision-badge" class="decision-badge">TERMINÉ</div>
+          </div>
+          <article id="decision"></article>
+          <div id="report-tabs" class="report-tabs"></div>
+          <article id="report-content" class="report-content"></article>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

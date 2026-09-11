@@ -11,6 +11,7 @@ requires-python = ">=3.10"
 dependencies = [
     "langchain-core>=0.3.81",
     "backtrader>=1.9.78.123",
+    "flask>=3.1.0,<4",
     "langchain-anthropic>=0.3.15",
     "langchain-experimental>=0.3.4",
     "langchain-google-genai>=4.0.0",
@@ -47,6 +48,7 @@ bedrock = [
 
 [project.scripts]
 tradingagents = "cli.main:app"
+forex-agent-ui = "local_app:main"
 
 [tool.setuptools.packages.find]
 include = ["tradingagents*", "cli*"]
